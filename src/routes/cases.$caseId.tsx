@@ -298,7 +298,7 @@ function OverviewTab({
   const facts = record.documents.flatMap((d) => d.facts);
   const findFact = (label: string) => facts.find((f) => f.label === label);
 
-  const keyRows: { label: string; value: string; fact?: ExtractedFact }[] = [
+  const keyRows: { label: string; value: string; fact?: ExtractedFact | undefined }[] = [
     { label: "Ordered quantity", value: q.po === undefined ? "UNKNOWN" : `${q.po} NOS`, ...(findFact("Ordered Quantity") ? { fact: findFact("Ordered Quantity") } : {}) },
     { label: "Delivered quantity", value: q.delivered === undefined ? "UNKNOWN" : `${q.delivered} NOS`, ...(findFact("Delivered Quantity") ? { fact: findFact("Delivered Quantity") } : {}) },
     { label: "Accepted quantity (GRN)", value: q.accepted === undefined ? "UNKNOWN" : `${q.accepted} NOS`, ...(findFact("Accepted Quantity") ? { fact: findFact("Accepted Quantity") } : {}) },
