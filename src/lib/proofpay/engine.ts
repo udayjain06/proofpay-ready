@@ -129,7 +129,7 @@ function issue(
   ruleId: string,
   partial: Partial<Issue> & { title: string; description: string; recommendedAction: string; evidence: string[] },
 ): Issue {
-  const rule = RULE_BY_ID[ruleId];
+  const rule = RULE_BY_ID[ruleId]!;
   return {
     id: `${ruleId}`,
     ruleId,
