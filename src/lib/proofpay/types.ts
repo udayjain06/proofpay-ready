@@ -63,10 +63,10 @@ export type CaseStatus =
   | "APPROVED";
 
 export interface CaseQuantities {
-  po?: number;
-  delivered?: number;
-  accepted?: number;
-  invoiced?: number;
+  po?: number | undefined;
+  delivered?: number | undefined;
+  accepted?: number | undefined;
+  invoiced?: number | undefined;
 }
 
 export interface CaseRecord {
@@ -85,23 +85,23 @@ export interface CaseRecord {
   poNumber: string;
   poNumberOnInvoice: string;
   invoiceTotal: number;
-  reportedInvoiceTotal?: number;
+  reportedInvoiceTotal?: number | undefined;
   paymentsReceived: number;
   creditNoteAmount: number;
   tdsAmount: number;
   retentionAmount: number;
-  duplicateOfInvoiceNumber?: string;
+  duplicateOfInvoiceNumber?: string | undefined;
   dates: {
     po: string;
-    delivery?: string;
-    grn?: string;
+    delivery?: string | undefined;
+    grn?: string | undefined;
     invoice: string;
     due: string;
   };
   quantities: CaseQuantities;
   documents: CaseDocument[];
   createdAt: string;
-  notes?: string;
+  notes?: string | undefined;
 }
 
 export type Severity = "INFO" | "LOW" | "MEDIUM" | "HIGH" | "CRITICAL";
