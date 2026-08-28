@@ -6,7 +6,7 @@ import { ReadinessBadge, SectionCard } from "@/components/proofpay/atoms";
 import { assessCase, money } from "@/lib/proofpay/engine";
 import { CASES } from "@/lib/proofpay/seed";
 
-export const Route = createFileRoute("/cases")({
+export const Route = createFileRoute("/cases/")({
   head: () => ({
     meta: [
       { title: "Cases — ProofPay evidence readiness" },
