@@ -64,7 +64,9 @@ function RulesPage() {
             ))}
           </div>
           <div className="mt-4 flex flex-wrap items-center gap-2">
-            <Pill>Result: {sim.result}</Pill>
+            <Pill tone={sim.result === "PASS" ? "success" : sim.result === "BLOCK" ? "critical" : "warning"}>
+              Result: {sim.result}
+            </Pill>
             {sim.fired.length === 0 ? (
               <span className="text-sm text-muted-foreground">No rules fired.</span>
             ) : (
