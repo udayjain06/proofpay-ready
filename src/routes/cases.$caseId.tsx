@@ -114,7 +114,7 @@ function CaseWorkspace() {
           <ArrowLeft className="size-3" /> All cases
         </Link>
 
-        <header className="flex flex-wrap items-start justify-between gap-4 rounded-lg border bg-card p-5">
+        <header className="flex flex-wrap items-start justify-between gap-4 rounded-2xl border border-white/50 bg-white/40 p-5 shadow-lg backdrop-blur-md backdrop-saturate-150 [box-shadow:0_8px_32px_rgba(30,50,100,0.10),inset_0_1px_0_rgba(255,255,255,0.60)]">
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2">
               <h1 className="text-lg font-semibold">{record.code}</h1>
@@ -126,7 +126,7 @@ function CaseWorkspace() {
             <p className="mt-1 text-sm text-muted-foreground">
               {record.buyer} · Invoice {record.invoiceNumber} · PO {record.poNumber}
             </p>
-            <p className="mt-3 max-w-3xl rounded-md border border-accent/30 bg-accent/5 p-3 text-sm">
+            <p className="mt-3 max-w-3xl rounded-xl border border-accent/35 bg-accent/10 p-3 text-sm backdrop-blur-sm">
               {assessment.headline}
             </p>
           </div>
@@ -139,13 +139,16 @@ function CaseWorkspace() {
 
         <div className="grid gap-4 xl:grid-cols-[1fr_320px]">
           <div className="min-w-0 space-y-4">
-            <div className="flex flex-wrap gap-1 rounded-lg border bg-card p-1">
+            {/* Glass pill tab bar */}
+            <div className="flex flex-wrap gap-1 rounded-xl border border-white/20 bg-white/10 p-1 backdrop-blur-sm">
               {TABS.map((t) => (
                 <button
                   key={t}
                   onClick={() => setTab(t)}
-                  className={`rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
-                    tab === t ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-muted"
+                  className={`rounded-lg px-3 py-1.5 text-xs font-medium transition-all ${
+                    tab === t
+                      ? "bg-white/25 text-foreground shadow-sm backdrop-blur-sm"
+                      : "text-muted-foreground hover:bg-white/15"
                   }`}
                 >
                   {t}
@@ -197,7 +200,7 @@ function CaseWorkspace() {
             <SectionCard title="Open risks" description={`${assessment.issues.length} detected`}>
               <ul className="space-y-2">
                 {assessment.issues.slice(0, 4).map((i) => (
-                  <li key={i.id} className="rounded-md border p-2.5">
+                  <li key={i.id} className="rounded-xl border border-white/15 bg-white/5 p-2.5 backdrop-blur-sm">
                     <div className="flex items-center gap-2">
                       <SeverityBadge severity={i.severity} />
                       <span className="text-xs font-medium">{i.category}</span>
@@ -213,13 +216,13 @@ function CaseWorkspace() {
 
             <SectionCard title="Human actions">
               <div className="space-y-2 text-xs">
-                <div className="flex items-center gap-2 rounded-md border border-accent/30 bg-accent/5 p-2.5">
+                <div className="flex items-center gap-2 rounded-xl border border-accent/35 bg-accent/10 p-2.5 backdrop-blur-sm">
                   <Lock className="size-3.5 text-accent" />
                   Communication status: <strong>{state?.communicationStatus ?? "DRAFT"}</strong>
                 </div>
                 <button
                   onClick={() => setTab("Communications")}
-                  className="w-full rounded-md bg-primary px-3 py-2 text-xs font-medium text-primary-foreground"
+                  className="w-full rounded-xl bg-primary px-3 py-2 text-xs font-medium text-primary-foreground shadow-md shadow-primary/20 transition-all hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/25"
                 >
                   Go to approval gate
                 </button>
@@ -231,11 +234,11 @@ function CaseWorkspace() {
 
       {viewer ? (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm"
           onClick={() => setViewer(null)}
         >
           <div
-            className="max-h-[85vh] w-full max-w-3xl overflow-auto rounded-lg bg-card p-5"
+            className="max-h-[85vh] w-full max-w-3xl overflow-auto rounded-2xl border border-white/50 bg-white/50 p-5 shadow-2xl backdrop-blur-xl backdrop-saturate-180 [box-shadow:0_24px_64px_rgba(0,0,0,0.18),inset_0_1px_0_rgba(255,255,255,0.70)]"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between">
@@ -250,12 +253,12 @@ function CaseWorkspace() {
                 Close
               </button>
             </div>
-            <div className="relative mt-4 rounded border bg-white p-4">
+            <div className="relative mt-4 rounded-xl border border-white/40 bg-white/30 p-4 backdrop-blur-sm">
               <pre className="whitespace-pre-wrap font-mono text-[11px] leading-relaxed text-foreground">
                 {highlight(viewer.doc.rawText, viewer.fact?.sourceSnippet)}
               </pre>
               {viewer.fact ? (
-                <div className="mt-3 rounded border border-accent/40 bg-accent/5 p-2 text-[11px]">
+                <div className="mt-3 rounded-xl border border-accent/40 bg-accent/10 p-2 text-[11px] backdrop-blur-sm">
                   Highlighted region: x{viewer.fact.boundingBox.x} y{viewer.fact.boundingBox.y} w
                   {viewer.fact.boundingBox.w} h{viewer.fact.boundingBox.h} · extracted by{" "}
                   {viewer.fact.extractionMethod} ({viewer.fact.extractionVersion})
@@ -312,7 +315,7 @@ function OverviewTab({
       <SectionCard title="Source-linked facts" description="Click any source chip to open the document at its page">
         <div className="grid gap-2 sm:grid-cols-2">
           {keyRows.map((r) => (
-            <div key={r.label} className="rounded-md border p-3">
+            <div key={r.label} className="rounded-xl border border-white/15 bg-white/5 p-3 backdrop-blur-sm">
               <div className="text-xs text-muted-foreground">{r.label}</div>
               <div className="mt-0.5 text-sm font-semibold tabular-nums">{r.value}</div>
               <div className="mt-2 flex flex-wrap items-center gap-2">
@@ -348,9 +351,9 @@ function OverviewTab({
                   {b.score}/{b.max}
                 </span>
               </div>
-              <div className="mt-1 h-1.5 rounded bg-muted">
+              <div className="mt-1 h-1.5 rounded-full bg-white/20 backdrop-blur-sm">
                 <div
-                  className="h-1.5 rounded bg-primary"
+                  className="h-1.5 rounded-full bg-primary"
                   style={{ width: `${(b.score / b.max) * 100}%` }}
                 />
               </div>
@@ -370,7 +373,7 @@ function DocumentsTab({ record, onOpen }: { record: Record_; onOpen: (d: CaseDoc
           <button
             key={d.id}
             onClick={() => onOpen(d)}
-            className="flex w-full items-center justify-between rounded-md border p-3 text-left hover:border-accent"
+            className="flex w-full items-center justify-between rounded-xl border border-white/15 bg-white/5 p-3 text-left backdrop-blur-sm transition-all hover:border-accent/40 hover:bg-white/10"
           >
             <div>
               <div className="text-sm font-medium">{d.fileName}</div>

@@ -16,6 +16,12 @@
  * To add a new semantic color:
  * 1. Add the variable to :root (light value) and .dark (dark value)
  * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ *
+ * Glassmorphism tokens (toggle-friendly):
+ * --glass-bg         semi-transparent surface fill
+ * --glass-border     subtle white/light border for glass edges
+ * --glass-shadow     soft diffused drop shadow
+ * --glass-highlight  inset top-edge shimmer
  */
 
 @theme inline {
@@ -69,18 +75,23 @@
 }
 
 :root {
-  --radius: 0.5rem;
+  /* Increased base radius for softer glass feel */
+  --radius: 0.75rem;
+
   --background: oklch(0.975 0.004 250);
   --foreground: oklch(0.22 0.045 258);
-  --card: oklch(1 0 0);
+
+  /* Card is semi-transparent for glassmorphism — backdrop-blur does the frosting */
+  --card: oklch(1 0 0 / 60%);
   --card-foreground: oklch(0.22 0.045 258);
-  --popover: oklch(1 0 0);
+  --popover: oklch(1 0 0 / 82%);
   --popover-foreground: oklch(0.22 0.045 258);
+
   --primary: oklch(0.29 0.075 258);
   --primary-foreground: oklch(0.985 0.005 250);
-  --secondary: oklch(0.945 0.008 250);
+  --secondary: oklch(0.945 0.008 250 / 70%);
   --secondary-foreground: oklch(0.29 0.075 258);
-  --muted: oklch(0.955 0.006 250);
+  --muted: oklch(0.955 0.006 250 / 65%);
   --muted-foreground: oklch(0.52 0.02 255);
   --accent: oklch(0.7 0.17 47);
   --accent-foreground: oklch(0.99 0.01 90);
@@ -92,58 +103,80 @@
   --warning-foreground: oklch(0.25 0.05 60);
   --info: oklch(0.58 0.13 245);
   --info-foreground: oklch(0.99 0.005 250);
-  --border: oklch(0.9 0.01 253);
-  --input: oklch(0.9 0.01 253);
+
+  --border: oklch(0.75 0.02 253 / 38%);
+  --input: oklch(0.75 0.02 253 / 32%);
   --ring: oklch(0.7 0.17 47);
+
   --chart-1: oklch(0.29 0.075 258);
   --chart-2: oklch(0.7 0.17 47);
   --chart-3: oklch(0.58 0.13 155);
   --chart-4: oklch(0.76 0.15 78);
   --chart-5: oklch(0.55 0.21 27);
-  --sidebar: oklch(0.24 0.06 258);
+
+  /* Sidebar: semi-transparent so blob gradient shows through */
+  --sidebar: oklch(0.24 0.06 258 / 85%);
   --sidebar-foreground: oklch(0.93 0.01 250);
   --sidebar-primary: oklch(0.7 0.17 47);
   --sidebar-primary-foreground: oklch(0.15 0.03 258);
-  --sidebar-accent: oklch(0.31 0.06 258);
+  --sidebar-accent: oklch(0.31 0.06 258 / 80%);
   --sidebar-accent-foreground: oklch(0.98 0.005 250);
-  --sidebar-border: oklch(0.33 0.05 258);
+  --sidebar-border: oklch(1 0 0 / 12%);
   --sidebar-ring: oklch(0.7 0.17 47);
+
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  /* ── Glassmorphism tokens ── */
+  --glass-bg: oklch(1 0 0 / 55%);
+  --glass-border: oklch(1 0 0 / 30%);
+  --glass-shadow: 0 8px 32px oklch(0.22 0.045 258 / 8%);
+  --glass-highlight: inset 0 1px 0 0 oklch(1 0 0 / 30%);
 }
 
 .dark {
   --background: oklch(0.129 0.042 264.695);
   --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
+
+  /* Dark glass: deep navy with transparency */
+  --card: oklch(0.208 0.042 265.755 / 65%);
   --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
+  --popover: oklch(0.208 0.042 265.755 / 82%);
   --popover-foreground: oklch(0.984 0.003 247.858);
+
   --primary: oklch(0.929 0.013 255.508);
   --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
+  --secondary: oklch(0.279 0.041 260.031 / 70%);
   --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
+  --muted: oklch(0.279 0.041 260.031 / 60%);
   --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
+  --accent: oklch(0.279 0.041 260.031 / 70%);
   --accent-foreground: oklch(0.984 0.003 247.858);
   --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
+  --border: oklch(1 0 0 / 12%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.551 0.027 264.364);
+
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
+
+  --sidebar: oklch(0.18 0.042 265.755 / 82%);
   --sidebar-foreground: oklch(0.984 0.003 247.858);
   --sidebar-primary: oklch(0.488 0.243 264.376);
   --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
+  --sidebar-accent: oklch(0.279 0.041 260.031 / 75%);
   --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.551 0.027 264.364);
+
+  /* ── Dark glassmorphism tokens ── */
+  --glass-bg: oklch(0.208 0.042 265.755 / 55%);
+  --glass-border: oklch(1 0 0 / 12%);
+  --glass-shadow: 0 8px 32px oklch(0 0 0 / 30%);
+  --glass-highlight: inset 0 1px 0 0 oklch(1 0 0 / 10%);
 }
 
 @layer base {
@@ -151,8 +184,31 @@
     border-color: var(--color-border);
   }
 
+  /*
+   * ── Glassmorphism background ────────────────────────────────────────────────
+   * The gradient MUST be on `html` (not body::before) so that body can be
+   * transparent. If body has a solid background-color, backdrop-blur has nothing
+   * colorful to blur — the whole glass effect disappears.
+   *
+   * To toggle glassmorphism off: set html { background: oklch(0.975 0.004 250) }
+   * and body { background-color: var(--color-background) }.
+   */
+  html {
+    min-height: 100%;
+    /* Vivid blob gradient: navy top-left, orange top-right, green bottom, blue mid-left */
+    background-color: oklch(0.965 0.012 255); /* soft blue-tinted base */
+    background-image:
+      radial-gradient(ellipse 65% 55% at 5%  12%,  oklch(0.40 0.12  258 / 55%) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 60% at 92% 8%,   oklch(0.72 0.18  47  / 45%) 0%, transparent 60%),
+      radial-gradient(ellipse 55% 45% at 52% 98%,  oklch(0.55 0.15  155 / 40%) 0%, transparent 58%),
+      radial-gradient(ellipse 45% 50% at 12% 82%,  oklch(0.55 0.16  245 / 35%) 0%, transparent 55%),
+      radial-gradient(ellipse 35% 35% at 75% 70%,  oklch(0.60 0.14  320 / 25%) 0%, transparent 50%);
+    background-attachment: fixed;
+  }
+
+  /* CRITICAL: body must be transparent so the html gradient shows through glass panels */
   body {
-    background-color: var(--color-background);
+    background-color: transparent;
     color: var(--color-foreground);
     font-family: var(--font-sans);
     font-feature-settings: "cv02", "cv03", "cv04", "tnum";
@@ -162,3 +218,37 @@
     letter-spacing: -0.011em;
   }
 }
+
+/*
+ * ── Glass utility classes ───────────────────────────────────────────────────
+ * Centralised here — any new component can opt in with a single class.
+ * backdrop-filter: blur() only produces a visible effect when the element
+ * below is colorful — which it now is (the html gradient above).
+ */
+@layer utilities {
+  .glass {
+    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.50);
+    box-shadow: 0 8px 32px rgba(30, 50, 100, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(14px) saturate(180%);
+    -webkit-backdrop-filter: blur(14px) saturate(180%);
+  }
+
+  .glass-sm {
+    background: rgba(255, 255, 255, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.40);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.50);
+    backdrop-filter: blur(8px) saturate(160%);
+    -webkit-backdrop-filter: blur(8px) saturate(160%);
+  }
+
+  /* Sidebar: dark-tinted glass over the colorful gradient */
+  .glass-sidebar {
+    background: rgba(22, 32, 58, 0.82);
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.18), inset -1px 0 0 rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+  }
+}
+

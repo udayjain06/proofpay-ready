@@ -205,7 +205,7 @@ function Overview() {
         </SectionCard>
 
         <div className="grid gap-3 md:grid-cols-3">
-          <div className="rounded-lg border border-accent/30 bg-accent/5 p-4 text-sm">
+          <div className="rounded-2xl border border-white/50 bg-white/40 p-4 text-sm shadow-lg backdrop-blur-md backdrop-saturate-150">
             <div className="flex items-center gap-2 font-medium">
               <ShieldQuestion className="size-4 text-accent" /> Refusal to overclaim
             </div>
@@ -214,7 +214,7 @@ function Overview() {
               presented as owed.
             </p>
           </div>
-          <div className="rounded-lg border p-4 text-sm">
+          <div className="rounded-2xl border border-white/50 bg-white/40 p-4 text-sm shadow-lg backdrop-blur-md backdrop-saturate-150">
             <div className="flex items-center gap-2 font-medium">
               <AlertTriangle className="size-4 text-warning" /> Deterministic maths
             </div>
@@ -223,7 +223,7 @@ function Overview() {
               language model.
             </p>
           </div>
-          <div className="rounded-lg border p-4 text-sm">
+          <div className="rounded-2xl border border-white/50 bg-white/40 p-4 text-sm shadow-lg backdrop-blur-md backdrop-saturate-150">
             <div className="flex items-center gap-2 font-medium">
               <CheckCircle2 className="size-4 text-success" /> Human approval gate
             </div>

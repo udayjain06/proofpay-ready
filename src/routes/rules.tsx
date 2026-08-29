@@ -58,7 +58,7 @@ function RulesPage() {
                   type="number"
                   value={f.value}
                   onChange={(e) => f.set(Number(e.target.value))}
-                  className="mt-1 w-full rounded-md border bg-background px-3 py-2 text-sm text-foreground"
+                  className="mt-1 w-full rounded-xl border border-white/25 bg-white/10 px-3 py-2 text-sm text-foreground backdrop-blur-sm outline-none focus:border-accent/60 focus:ring-1 focus:ring-accent/40"
                 />
               </label>
             ))}
@@ -71,7 +71,7 @@ function RulesPage() {
               <span className="text-sm text-muted-foreground">No rules fired.</span>
             ) : (
               sim.fired.map((f) => (
-                <span key={f.ruleId} className="flex items-center gap-1.5 rounded-md border px-2 py-1 text-xs">
+                <span key={f.ruleId} className="flex items-center gap-1.5 rounded-xl border border-white/20 bg-white/10 px-2 py-1 text-xs backdrop-blur-sm shadow-sm">
                   <SeverityBadge severity={f.severity} />
                   {f.ruleId} · {f.action}
                 </span>

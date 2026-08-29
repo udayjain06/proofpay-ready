@@ -8,13 +8,20 @@ export function Pill({
   tone: "neutral" | "success" | "warning" | "critical" | "info" | "accent";
   children: React.ReactNode;
 }) {
+  // Each tone is rendered as translucent glass — status color preserved, just made glassy
   const tones: Record<string, string> = {
-    neutral: "bg-muted text-muted-foreground border-border",
-    success: "bg-success/10 text-success border-success/30",
-    warning: "bg-warning/15 text-warning-foreground border-warning/40",
-    critical: "bg-destructive/10 text-destructive border-destructive/30",
-    info: "bg-info/10 text-info border-info/30",
-    accent: "bg-accent/10 text-accent border-accent/30",
+    neutral:
+      "bg-white/10 text-muted-foreground border-white/20 backdrop-blur-sm shadow-sm",
+    success:
+      "bg-success/15 text-success border-success/35 backdrop-blur-sm shadow-sm",
+    warning:
+      "bg-warning/20 text-warning-foreground border-warning/40 backdrop-blur-sm shadow-sm",
+    critical:
+      "bg-destructive/15 text-destructive border-destructive/35 backdrop-blur-sm shadow-sm",
+    info:
+      "bg-info/15 text-info border-info/35 backdrop-blur-sm shadow-sm",
+    accent:
+      "bg-accent/15 text-accent border-accent/35 backdrop-blur-sm shadow-sm",
   };
   return (
     <span
@@ -83,7 +90,7 @@ export function SourceReference({
       type="button"
       onClick={onClick}
       title={snippet}
-      className="inline-flex items-center gap-1 rounded border border-border bg-muted/60 px-1.5 py-0.5 text-[11px] text-muted-foreground transition-colors hover:border-accent hover:text-accent"
+      className="inline-flex items-center gap-1 rounded-lg border border-white/20 bg-white/10 px-1.5 py-0.5 text-[11px] text-muted-foreground backdrop-blur-sm shadow-sm transition-all hover:border-accent/50 hover:bg-accent/10 hover:text-accent"
     >
       <FileSearch className="size-3" />
       {fileName} · p{page}
@@ -101,7 +108,7 @@ export function MetricCard({
   hint?: string;
 }) {
   return (
-    <div className="rounded-lg border bg-card p-4">
+    <div className="rounded-2xl border border-white/50 bg-white/40 p-4 shadow-lg backdrop-blur-md backdrop-saturate-150 [box-shadow:0_8px_32px_rgba(30,50,100,0.10),inset_0_1px_0_rgba(255,255,255,0.60)]">
       <div className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{label}</div>
       <div className="mt-1.5 text-2xl font-semibold tabular-nums text-foreground">{value}</div>
       {hint ? <div className="mt-1 text-xs text-muted-foreground">{hint}</div> : null}
@@ -121,8 +128,8 @@ export function SectionCard({
   children: React.ReactNode;
 }) {
   return (
-    <section className="rounded-lg border bg-card">
-      <header className="flex flex-wrap items-center justify-between gap-2 border-b px-4 py-3">
+    <section className="rounded-2xl border border-white/50 bg-white/40 shadow-lg backdrop-blur-md backdrop-saturate-150 [box-shadow:0_8px_32px_rgba(30,50,100,0.10),inset_0_1px_0_rgba(255,255,255,0.60)]">
+      <header className="flex flex-wrap items-center justify-between gap-2 border-b border-white/30 px-4 py-3">
         <div>
           <h2 className="text-sm font-semibold">{title}</h2>
           {description ? <p className="text-xs text-muted-foreground">{description}</p> : null}
@@ -133,3 +140,4 @@ export function SectionCard({
     </section>
   );
 }
+

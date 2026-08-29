@@ -464,7 +464,7 @@ function NewCasePage() {
               )}
 
               {anyInjection ? (
-                <div className="mt-3 flex items-start gap-2 rounded-md border border-warning/40 bg-warning/10 p-3 text-xs">
+                <div className="mt-3 flex items-start gap-2 rounded-xl border border-warning/40 bg-warning/10 p-3 text-xs backdrop-blur-sm">
                   <FileWarning className="mt-0.5 size-3.5 shrink-0 text-warning-foreground" />
                   <span>
                     Instruction-like text was found inside one or more uploaded documents. It has
@@ -576,7 +576,7 @@ function NewCasePage() {
             <SectionCard title="Create case">
               <div className="space-y-3">
                 {missingRequired.length > 0 ? (
-                  <div className="flex items-start gap-2 rounded-md border border-destructive/40 bg-destructive/10 p-3 text-xs text-destructive">
+                  <div className="flex items-start gap-2 rounded-xl border border-destructive/40 bg-destructive/10 p-3 text-xs text-destructive backdrop-blur-sm">
                     <AlertTriangle className="mt-0.5 size-3.5 shrink-0" />
                     <span>
                       Missing required field(s): {missingRequired.map((f) => f.label).join(", ")}.
@@ -586,7 +586,7 @@ function NewCasePage() {
                 ) : null}
 
                 {unresolvedLowConfidence.length > 0 ? (
-                  <label className="flex items-start gap-2 rounded-md border border-warning/40 bg-warning/10 p-3 text-xs">
+                  <label className="flex items-start gap-2 rounded-xl border border-warning/40 bg-warning/10 p-3 text-xs backdrop-blur-sm">
                     <input
                       type="checkbox"
                       checked={acknowledgeLowConfidence}
@@ -694,8 +694,10 @@ function UploadSlot({
           if (file) onFile(file);
         }}
         onClick={() => inputRef.current?.click()}
-        className={`flex cursor-pointer flex-col items-center justify-center gap-1.5 rounded-lg border-2 border-dashed p-5 text-center transition-colors ${
-          dragOver ? "border-accent bg-accent/5" : "border-border hover:border-accent/60"
+        className={`flex cursor-pointer flex-col items-center justify-center gap-1.5 rounded-2xl border-2 border-dashed p-5 text-center transition-all ${
+          dragOver
+            ? "border-accent/60 bg-accent/10 backdrop-blur-sm shadow-lg shadow-accent/10"
+            : "border-white/30 bg-white/5 backdrop-blur-sm hover:border-accent/50 hover:bg-white/10"
         }`}
       >
         <Upload className="size-5 text-muted-foreground" />
@@ -729,7 +731,7 @@ function UploadSlot({
           : "info";
 
   return (
-    <div className="rounded-lg border p-3">
+    <div className="rounded-2xl border border-white/20 bg-white/10 p-3 backdrop-blur-sm shadow-sm">
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0">
           <div className="text-sm font-medium">{label}</div>

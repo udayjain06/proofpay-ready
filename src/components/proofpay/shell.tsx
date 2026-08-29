@@ -26,8 +26,9 @@ export function AppShell({ children }: { children: ReactNode }) {
 
   return (
     <div className="flex min-h-screen bg-background">
-      <aside className="hidden w-60 shrink-0 flex-col bg-sidebar text-sidebar-foreground lg:flex">
-        <div className="flex items-center gap-2 border-b border-sidebar-border px-5 py-5">
+      {/* Sidebar — glass-sidebar applies backdrop-blur-lg + semi-transparent bg via CSS utility */}
+      <aside className="glass-sidebar hidden w-60 shrink-0 flex-col text-sidebar-foreground lg:flex">
+        <div className="flex items-center gap-2 border-b border-white/10 px-5 py-5">
           <ShieldCheck className="size-5 text-sidebar-primary" />
           <div>
             <div className="text-sm font-semibold tracking-tight">ProofPay</div>
@@ -41,9 +42,9 @@ export function AppShell({ children }: { children: ReactNode }) {
               <Link
                 key={item.to}
                 to={item.to}
-                className={`flex items-center gap-2.5 rounded-md px-3 py-2 text-sm transition-colors ${
+                className={`flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm transition-colors ${
                   active
-                    ? "bg-sidebar-accent font-medium text-sidebar-accent-foreground"
+                    ? "bg-sidebar-accent shadow-sm font-medium text-sidebar-accent-foreground"
                     : "text-sidebar-foreground/75 hover:bg-sidebar-accent/60"
                 }`}
               >
@@ -53,7 +54,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             );
           })}
         </nav>
-        <div className="border-t border-sidebar-border p-4 text-[11px] leading-relaxed text-sidebar-foreground/55">
+        <div className="border-t border-white/10 p-4 text-[11px] leading-relaxed text-sidebar-foreground/55">
           <div className="mb-1 font-medium text-sidebar-foreground/80">{ORGANIZATION.name}</div>
           GSTIN {ORGANIZATION.gstin}
           <div className="mt-2">Signed in as Priya Nair · FINANCE_MANAGER</div>
@@ -61,7 +62,8 @@ export function AppShell({ children }: { children: ReactNode }) {
       </aside>
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="flex flex-wrap items-center justify-between gap-2 border-b bg-card px-5 py-3 lg:px-8">
+        {/* Top header — frosted glass floating bar */}
+        <header className="flex flex-wrap items-center justify-between gap-2 border-b border-white/40 bg-white/55 px-5 py-3 backdrop-blur-md backdrop-saturate-150 lg:px-8">
           <div className="flex items-center gap-2 lg:hidden">
             <ShieldCheck className="size-5 text-accent" />
             <span className="font-semibold">ProofPay</span>
@@ -87,7 +89,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           </div>
         </header>
         <main className="min-w-0 flex-1 px-5 py-6 lg:px-8">{children}</main>
-        <footer className="border-t bg-card px-5 py-4 text-[11px] leading-relaxed text-muted-foreground lg:px-8">
+        <footer className="border-t border-white/40 bg-white/45 px-5 py-4 text-[11px] leading-relaxed text-muted-foreground backdrop-blur-sm lg:px-8">
           {DISCLAIMER}
         </footer>
       </div>

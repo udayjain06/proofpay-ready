@@ -55,7 +55,7 @@ function CasesPage() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search cases…"
-                className="w-full rounded-md border bg-card py-2 pl-8 pr-3 text-sm outline-none focus:border-accent"
+                className="w-full rounded-xl border border-white/25 bg-white/10 py-2 pl-8 pr-3 text-sm backdrop-blur-sm outline-none focus:border-accent/60 focus:ring-1 focus:ring-accent/40"
               />
             </label>
             <Button asChild size="sm">
